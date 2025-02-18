@@ -30,8 +30,9 @@ const puzzles = [
 
 let currentPuzzleIndex = 0;
 
-// عرض اللغز الأول عند بدء اللعبة
+// Show the first puzzle when the game starts
 function showPuzzle() {
+    console.log("تم عرض اللغز");
     const puzzle = puzzles[currentPuzzleIndex];
     document.getElementById('puzzle-image').innerHTML = `<img src="${puzzle.image}" alt="لغز">`;
     document.getElementById('submit-answer').addEventListener('click', function() {
@@ -39,7 +40,7 @@ function showPuzzle() {
     });
 }
 
-// التحقق من الإجابة
+// Check the answer submitted by the player
 function checkAnswer(correctAnswer) {
     const playerAnswer = document.getElementById('answer-box').value;
     
@@ -53,19 +54,19 @@ function checkAnswer(correctAnswer) {
         setTimeout(() => {
             answerCooldown = false;
             document.getElementById('feedback').textContent = '';
-            currentPuzzleIndex++; // الانتقال للغز التالي
+            currentPuzzleIndex++; // Go to the next puzzle
             if (currentPuzzleIndex < puzzles.length) {
-                showPuzzle(); // عرض اللغز الجديد
+                showPuzzle(); // Show the next puzzle
             } else {
                 document.getElementById('feedback').textContent = 'لقد انتهيت من الألغاز!';
             }
-        }, 20000); // الانتظار 20 ثانية بعد الإجابة الصحيحة
+        }, 20000); // Wait for 20 seconds after correct answer
     } else {
         document.getElementById('feedback').textContent = 'إجابة خاطئة، انتظر 20 ثانية!';
         answerCooldown = true;
         setTimeout(() => {
             answerCooldown = false;
             document.getElementById('feedback').textContent = '';
-        }, 20000); // الانتظار 20 ثانية بعد الإجابة الخاطئة
+        }, 20000); // Wait for 20 seconds after wrong answer
     }
 }
