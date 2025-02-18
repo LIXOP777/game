@@ -13,12 +13,17 @@ function showGameSetup() {
 // Create a new game
 document.getElementById('start-new-game').addEventListener('click', function() {
     const gameName = document.getElementById('game-name').value;
+    console.log("تم الضغط على الزر لإنشاء اللعبة");
     if (gameName) {
+        console.log("تم إدخال اسم اللعبة: " + gameName);
         gameId = gameName; // Simulate a unique game ID
         alert('تم إنشاء اللعبة بنجاح: ' + gameId);
         players.push(gameId); // Add the player to the game
+
+        // Hide the game setup section and show the game section
         document.getElementById('game-setup').classList.add('hidden');
         document.getElementById('game-section').classList.remove('hidden');
+
         showPuzzle();
     } else {
         alert('يرجى إدخال اسم للعبة');
